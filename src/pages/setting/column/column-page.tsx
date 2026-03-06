@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/app-hooks";
 import { useNavigate, useParams } from "react-router-dom";
 import { projectColumnActions } from "@/store/project/projetc-column";
 import { toast } from "sonner";
-import { Loader, Plus } from "lucide-react";
+import { Layers, Loader, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ColumnCard from "@/components/main/column/column-card";
 import { IProjectColumn } from "@/@types/column-types";
@@ -58,8 +58,10 @@ const ColumnPage = () => {
   };
 
   React.useEffect(() => {
-    dispatch(projectColumnActions.pullProjectColumns(user, activeProject));
-  }, []);
+    if (activeProject) {
+      dispatch(projectColumnActions.pullProjectColumns(user, activeProject));
+    }
+  }, [activeProject]);
 
   React.useEffect(() => {
     if (phase === "project-column-deleting-error") {
@@ -71,6 +73,18 @@ const ColumnPage = () => {
       handleCloseConfirm();
     }
   }, [phase]);
+
+  if (!activeProject) {
+    return (
+      <div className="w-full h-full flex flex-col justify-center items-center space-y-3">
+        <Layers className="h-36 w-36" />
+        <p className="text-2xl font-semibold">
+          You haven't select a project yet.
+        </p>
+        <p>Create a new project and start adding your columns</p>
+      </div>
+    );
+  }
 
   if (phase === "project-columns-pulling") {
     return (
@@ -102,7 +116,6 @@ const ColumnPage = () => {
             <ColumnCard
               key={row.id}
               projectColumnInfo={row}
-              user={user}
               activeProject={activeProject}
               handleEdit={() => handleEdit(row?.id)}
               handleDelete={() => handleShowConfirm(row?.id)}

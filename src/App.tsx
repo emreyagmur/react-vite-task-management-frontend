@@ -13,6 +13,7 @@ import ForgetPassword from "@/pages/auth/forget-password-page";
 import ResetPassword from "@/pages/auth/reset-password";
 import TaskPage from "@/pages/task/task-page";
 import ColumnPage from "@/pages/setting/column/column-page";
+import ProjectUserPage from "@/pages/setting/user/project-user-page";
 
 export function App() {
   return (
@@ -36,6 +37,7 @@ export function App() {
             <Route path="/column" element={<ColumnPage />} />
             <Route path="/column/:action" element={<ColumnPage />} />
             <Route path="/column/:action/:id" element={<ColumnPage />} />
+            <Route path="/user" element={<ProjectUserPage />} />
             <Route path="/logout" element={<Logout />} />
           </Route>
         </Route>

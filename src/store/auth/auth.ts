@@ -163,7 +163,12 @@ export function* saga() {
         ip_address: ip_address,
       });
 
-      if (response.status !== 200) {
+      console.log("Login Response:", response);
+
+      if (response === undefined) {
+        yield put(authActions.setPhase("error", "Network Error"));
+        return;
+      } else if (response.status !== 200) {
         yield put(
           authActions.setPhase(
             "error",

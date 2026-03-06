@@ -12,6 +12,7 @@ import * as forgotPassword from "@/store/auth/forgot-password-store";
 import * as emailVerification from "@/store/auth/email-verification-store";
 import * as project from "@/store/project/project";
 import * as projectColumn from "@/store/project/projetc-column";
+import * as projectUser from "@/store/project/project-user";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -25,6 +26,7 @@ export function* rootSaga() {
     emailVerification.saga(),
     project.saga(),
     projectColumn.saga(),
+    projectUser.saga(),
   ];
   yield all(mainSagas);
 }

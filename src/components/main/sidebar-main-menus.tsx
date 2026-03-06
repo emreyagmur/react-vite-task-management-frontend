@@ -57,12 +57,8 @@ const SidebarMainMenus = () => {
             url: "column",
           },
           {
-            title: "Starred",
-            url: "#",
-          },
-          {
-            title: "Settings",
-            url: "#",
+            title: "Users",
+            url: "user",
           },
         ],
       },

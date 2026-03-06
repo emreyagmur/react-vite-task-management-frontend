@@ -7,6 +7,7 @@ import { forgotPasswordReducer } from "@/store/auth/forgot-password-store";
 import { emailVerificationReducer } from "@/store/auth/email-verification-store";
 import { projectReducer } from "@/store/project/project";
 import { projectColumnReducer } from "@/store/project/projetc-column";
+import { projectUserReducer } from "@/store/project/project-user";
 
 const RootReducer = combineReducers({
   auth: authReducer,
@@ -17,6 +18,7 @@ const RootReducer = combineReducers({
   emailVerification: emailVerificationReducer,
   projects: projectReducer,
   projectColumns: projectColumnReducer,
+  projectUsers: projectUserReducer,
 });
 
 export default RootReducer;

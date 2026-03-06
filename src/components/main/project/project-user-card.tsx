@@ -1,5 +1,5 @@
-import { IProjectColumn } from "@/@types/column-types";
-import { IProject } from "@/@types/project-types";
+import { IProjectUser } from "@/@types/project-user-types";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,27 +8,29 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ArrowRight, Pencil, Trash2 } from "lucide-react";
+import { ArrowRight, BadgeCheck, Pencil, Trash2 } from "lucide-react";
 
-interface ColumnCardProps {
-  projectColumnInfo: IProjectColumn;
-  activeProject: IProject;
+interface ProjectUserCardProps {
+  projectUserInfo: IProjectUser;
   handleEdit: () => void;
   handleDelete: () => void;
-  handleSeeDetails: () => void;
 }
 
-const ColumnCard = ({
-  projectColumnInfo,
+const ProjectUserCard = ({
+  projectUserInfo,
   handleEdit,
   handleDelete,
-  handleSeeDetails,
-}: ColumnCardProps) => {
+}: ProjectUserCardProps) => {
   return (
     <Card className="w-full md:max-w-full shadow-none">
       <CardHeader>
         <CardTitle className="flex flex-row items-center justify-between">
-          {projectColumnInfo?.column_name}
+          {projectUserInfo?.user?.name}
+          <div>
+            <Badge variant="secondary">
+              {projectUserInfo?.is_admin === "1" ? "Admin" : "User"}
+            </Badge>
+          </div>
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -63,4 +65,4 @@ const ColumnCard = ({
   );
 };
 
-export default ColumnCard;
+export default ProjectUserCard;
